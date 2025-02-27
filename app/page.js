@@ -1,4 +1,4 @@
-import SSR from "./components/SSR";
+import Link from "next/link";
 
 export default function Home() {
   const time = Date();
@@ -12,7 +12,11 @@ export default function Home() {
           </strong>{" "}
           so its SSG !!
         </p>
-        <SSR />
+        <Link href="/ssr">
+          <button className="hover:bg-sky-400 focus:scale-150 bg-white text-black hover:text-white transition-all duration-300 cursor-pointer font-bold px-3 py-2 rounded-xl">
+            go to SSR !
+          </button>
+        </Link>
       </div>
     </div>
   );
