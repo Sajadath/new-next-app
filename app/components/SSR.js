@@ -1,6 +1,8 @@
 export default async function SSR() {
   const time = Date();
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+    cache: "no-store", // Force fetch at request time (SSR)
+  });
   const data = await res.json();
   console.log(data);
 
