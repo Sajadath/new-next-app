@@ -1,4 +1,7 @@
 import Link from "next/link";
+export const metadata = {
+  title: "SSR Page",
+};
 
 export default async function Page() {
   const time = Date();

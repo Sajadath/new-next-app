@@ -1,4 +1,9 @@
 import Link from "next/link";
+import Loading from "./components/Loading";
+
+export const metadata = {
+  title: "SSG Page",
+};
 
 export default function Home() {
   const time = Date();
@@ -12,11 +17,14 @@ export default function Home() {
           </strong>{" "}
           so its SSG !!
         </p>
-        <Link href="/ssr">
+        <Link href="ssr">
           <button className="hover:bg-sky-400 focus:scale-150 bg-white text-black hover:text-white transition-all duration-300 cursor-pointer font-bold px-3 py-2 rounded-xl">
             go to SSR !
           </button>
         </Link>
+        <div className="justify-self-center mt-10 ">
+          <Loading />
+        </div>
       </div>
     </div>
   );
