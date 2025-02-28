@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaUsers } from "react-icons/fa";
+import Users from "./users"; // Correct the import statement
+import About from "./about"; // Import the About component
 
 function Page() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+  const [activeComponent, setActiveComponent] = useState("home");
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -70,6 +73,7 @@ function Page() {
                 <a
                   href="#"
                   className="flex items-center text-sm text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                  onClick={() => setActiveComponent("home")}
                 >
                   <FaHome className="mr-3" />
                   Home
@@ -79,6 +83,7 @@ function Page() {
                 <a
                   href="#"
                   className="flex items-center text-sm text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                  onClick={() => setActiveComponent("about")}
                 >
                   <FaInfoCircle className="mr-3" />
                   About
@@ -88,6 +93,7 @@ function Page() {
                 <a
                   href="#"
                   className="flex items-center text-sm text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                  onClick={() => setActiveComponent("users")}
                 >
                   <FaUsers className="mr-3" />
                   Users
@@ -107,14 +113,18 @@ function Page() {
         </aside>
 
         <main className="flex-1 p-10 transition-all duration-500 ease-in-out">
-          <div className="bg-white p-6 rounded-xl shadow-md">
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
-              Welcome to Management App
-            </h1>
-            <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-              Explore the sidebar to get started with your management tasks.
-            </p>
-          </div>
+          {activeComponent === "home" && (
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+                Welcome to Management App
+              </h1>
+              <p className="text-sm text-gray-600 mt-3 leading-relaxed">
+                Explore the sidebar to get started with your management tasks.
+              </p>
+            </div>
+          )}
+          {activeComponent === "about" && <About />}
+          {activeComponent === "users" && <Users />}
         </main>
       </div>
     </div>

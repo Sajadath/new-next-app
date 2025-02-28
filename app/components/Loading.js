@@ -1,8 +1,13 @@
-function Loading() {
+function Loading({ mode = "dark" }) {
   return (
-    <div className="size-11  relative  bg-white rounded-full flex items-center justify-center overflow-hidden">
-      <div className="size-9 bg-black rounded-full"></div>
-      <div className="h-10 absolute top-[50%] left-[50%] translate-y-[-50%]  w-full bg-black animate-spin origin-left"></div>
+    <div
+      className={` relative bg-transparent rounded-full flex  items-center justify-center overflow-hidden`}
+    >
+      <div
+        className={`size-9 border-3 border-r-0  border-b-0 border-${
+          mode === "light" ? "black" : "white "
+        } animate-spin rounded-full`}
+      ></div>
     </div>
   );
 }
