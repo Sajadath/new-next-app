@@ -1,10 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import jwt from "jsonwebtoken";
 
-const SECRET_KEY = "your_secret_key";
-const ACCESS_TOKEN_EXPIRY = "5m";
-const REFRESH_TOKEN_EXPIRY = "10m";
 const tokensFilePath = path.join(process.cwd(), "data", "tokens.json");
 
 const users = {
@@ -17,14 +13,10 @@ export async function POST(req) {
     const { username, password } = await req.json();
 
     if (username === users.username && password === users.password) {
-      const accessToken = jwt.sign({ username }, SECRET_KEY, {
-        expiresIn: ACCESS_TOKEN_EXPIRY,
-      });
-      const refreshToken = jwt.sign({ username }, SECRET_KEY, {
-        expiresIn: REFRESH_TOKEN_EXPIRY,
-      });
-
-      const tokens = { accessToken, refreshToken };
+      const tokens = {
+        accessToken: "dummyAccessToken",
+        refreshToken: "dummyRefreshToken",
+      };
       await fs.writeFile(
         tokensFilePath,
         JSON.stringify(tokens, null, 2),
